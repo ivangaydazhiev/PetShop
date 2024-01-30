@@ -25,7 +25,7 @@ namespace PetShop.Controllers
 
         [HttpPost("GetAllPetsAndProducts")]
 
-        public GetAllPetsAndProductsResponse GetAllPetsAndProducts([FromBody] GetAllPetsAndProductsRequest request)
+        public GetAllPetsAndProductsResponse? GetAllPetsAndProducts([FromBody] GetAllPetsAndProductsRequest request)
         {
             return _petShopService.GetAllPetsAndProducts(request);
         }

@@ -32,13 +32,12 @@ namespace PetShop
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
 
             app.UseAuthorization();
 
-            app.MapRazorPages();
+            app.UseRouting();
+
+            app.MapControllers();
 
             app.Run();
         }

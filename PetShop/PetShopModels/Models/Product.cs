@@ -1,5 +1,4 @@
-﻿
-namespace PetShop.Models.Models
+﻿namespace PetShop.Models.Models
 {
     public class Product
     {

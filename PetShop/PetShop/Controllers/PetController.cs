@@ -44,7 +44,7 @@ namespace PetShop.Controllers
             return CreatedAtAction(nameof(GetById), new {id = pet.Id }, pet);
         }
 
-        [HttpPost("{id}")]
+        [HttpPut("{id}")]
 
         public IActionResult Update(int id, Pet pet)
         {
