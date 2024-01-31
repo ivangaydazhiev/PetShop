@@ -2,6 +2,7 @@
 using PetShop.BL.Interfaces;
 using PetShop.Models.Requests;
 using PetShop.Models.Responses;
+using PetShop.Validators;
 
 namespace PetShop.Controllers
 {
@@ -28,6 +29,13 @@ namespace PetShop.Controllers
         public GetAllPetsAndProductsResponse? GetAllPetsAndProducts([FromBody] GetAllPetsAndProductsRequest request)
         {
             return _petShopService.GetAllPetsAndProducts(request);
+        }
+
+        [HttpPost("SomeEndPoint")]
+
+        public string GetData([FromBody]PetProductRequest request)
+        {
+            return "Ok";
         }
     }
 }

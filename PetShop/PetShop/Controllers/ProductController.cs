@@ -15,14 +15,14 @@ namespace PetShop.Controllers
             _productService = productService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
 
         public List<Product> GetAll()
         {
             return _productService.GetAll();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById")]
 
         public ActionResult<Product> GetById(int id)
         {
@@ -36,7 +36,7 @@ namespace PetShop.Controllers
             return product;
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
 
         public ActionResult<Product> Add(Product product)
         {
@@ -45,7 +45,7 @@ namespace PetShop.Controllers
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Update")]
 
         public IActionResult Update(int id, Product product)
         {
@@ -58,7 +58,7 @@ namespace PetShop.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete")]
 
         public IActionResult Delete(int id)
         {

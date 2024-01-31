@@ -1,7 +1,10 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using PetShop.BL.Interfaces;
 using PetShop.BL.Services;
 using PetShop.DL.Interfaces;
 using PetShop.DL.Repositories;
+using PetShop.HealthChecks;
 
 namespace PetShop
 {
@@ -17,6 +20,10 @@ namespace PetShop
             builder.Services.AddSingleton<IProductRepository, ProductRepository>();
             builder.Services.AddSingleton<IProductService, ProductService>();
             builder.Services.AddSingleton<IPetShopService, PetShopService>();
+
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining(typeof(Program));
+            builder.Services.AddHealthChecks().AddCheck<CustomHealthCheck>(nameof(CustomHealthCheck));
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -36,6 +43,8 @@ namespace PetShop
             app.UseAuthorization();
 
             app.UseRouting();
+
+            app.MapHealthChecks("/healthz");
 
             app.MapControllers();
 

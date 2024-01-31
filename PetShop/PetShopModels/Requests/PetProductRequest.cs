@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing.Constraints;
-
-namespace PetShop.Models.Requests
+﻿namespace PetShop.Models.Requests
 {
     public class PetProductRequest
     {
