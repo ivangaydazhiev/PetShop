@@ -32,8 +32,7 @@ namespace PetShop.BL.Services
                 Pets = _petService
                     .GetAllPetsByAgeAndType(
                     request.MinPetAge,
-                    request.PetType,
-                    request.IncludeOutOfStock),
+                    request.PetType),
                 Products = _productService
                 .GetById(request.ProductId)
             };

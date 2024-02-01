@@ -6,8 +6,6 @@
 
         public string PetType { get; set; } = string.Empty;
 
-        public bool IncludeOutOfStock { get; set; }
-
         public int ProductId { get; set; }
     }
 }

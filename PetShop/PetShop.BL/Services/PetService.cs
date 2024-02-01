@@ -1,6 +1,7 @@
 ﻿using PetShop.BL.Interfaces;
 using PetShop.DL.Interfaces;
 using PetShop.Models.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace PetShop.BL.Services
 {
@@ -37,14 +38,17 @@ namespace PetShop.BL.Services
             _petRepository.Delete(id);
         }
 
-        public List<Pet> GetAllPetsByAgeAndType(int minAge, string type, bool includeOutOfStock)
+        public List<Pet> GetAllPetsByAgeAndType(int minAge, string type)
         {
             var allPets = _petRepository.GetAll();
-
+            
+            if(allPets == null)
+            {
+                return new List<Pet>();
+            }
             var result = allPets
                 .Where(p => p.Age >= minAge)
                 .Where(p => string.IsNullOrEmpty(type) || p.Type == type)
-                .Where(p => includeOutOfStock)
                 .ToList();
 
             return result;

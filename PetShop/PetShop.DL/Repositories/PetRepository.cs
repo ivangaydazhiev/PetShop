@@ -16,6 +16,12 @@ namespace PetShop.DL.Repositories
             return InMemoryDb.PetsData.ToList();
         }
 
+        public List<Pet> GetAllPetsByAgeAndType(int minAge, string type)
+        {
+            return InMemoryDb.PetsData
+                .Where(p => p.Age >= minAge && p.Type == type)
+                .ToList();
+        }
         public Pet GetById(int id)
         {
             return InMemoryDb.PetsData.First(p => p.Id == id);
