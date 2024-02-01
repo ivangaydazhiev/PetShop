@@ -65,7 +65,7 @@ public class PetShopServiceTests
 
 
     [Fact]
-    public void CheckPetCount_Possitive()
+    public void CheckPetCount_Positive()
     {
         var input = 5;
         var expectedCount = 8;
@@ -113,7 +113,7 @@ public class PetShopServiceTests
         var request = new GetAllPetsAndProductsRequest
         {
             MinPetAge = 1,
-            PetType = "Dog",
+            PetType = "Cat",
             ProductId = 1,
         };
 
