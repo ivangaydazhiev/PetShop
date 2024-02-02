@@ -18,7 +18,7 @@ namespace PetShop.DL.Repositories
 
         public Product GetById(int id)
         {
-            return InMemoryDb.ProductsData.First(p => p.Id == id);
+            return InMemoryDb.ProductsData.FirstOrDefault(p => p.Id == id)!;
         }
 
         public void Add(Product product)
@@ -38,10 +38,11 @@ namespace PetShop.DL.Repositories
 
         public void Delete(int id)
         {
-            var productToDelete = InMemoryDb.ProductsData.FirstOrDefault(p => p.Id == id);
-            if (productToDelete != null)
+            var product = GetById(id);
+
+            if (product != null)
             {
-                InMemoryDb.ProductsData.Remove(productToDelete);
+                InMemoryDb.ProductsData.Remove(product);
             }
         }
     }

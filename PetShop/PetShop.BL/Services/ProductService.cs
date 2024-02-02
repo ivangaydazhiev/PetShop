@@ -33,9 +33,17 @@ namespace PetShop.BL.Services
             _productRepository.Update(product);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            _productRepository.Delete(id);
+            var product = _productRepository.GetById(id);
+
+            if(product != null)
+            {
+                _productRepository.Delete(id);
+                return true;
+            }
+
+            return false;
         }
     }
 }

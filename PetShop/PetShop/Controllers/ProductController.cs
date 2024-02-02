@@ -28,12 +28,12 @@ namespace PetShop.Controllers
         {
             var product = _productService.GetById(id);
 
-            if (product == null)
+            if(product == null)
             {
-                return NotFound();
+                return NotFound("Prodcut not found!");
             }
 
-            return product;
+            return Ok(product);
         }
 
         [HttpPost("Add")]
@@ -47,14 +47,21 @@ namespace PetShop.Controllers
 
         [HttpPut("Update")]
 
-        public IActionResult Update(int id, Product product)
+        public IActionResult Update([FromBody]Product product)
         {
-            if (id != product.Id)
+            if(product == null || product.Id <= 0)
             {
-                return BadRequest();
+                return BadRequest("Inavalid input.Please provide a valid product object!");
+            }
+
+            var existingProduct = _productService.GetById(product.Id);
+            if (existingProduct == null)
+            {
+                return NotFound("Product not found!");
             }
 
             _productService.Update(product);
+            
             return NoContent();
         }
 
@@ -62,9 +69,16 @@ namespace PetShop.Controllers
 
         public IActionResult Delete(int id)
         {
-            _productService.Delete(id);
+            var result = _productService.Delete(id);
 
-            return NoContent();
+            if(result)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return NotFound("Product not found!");
+            }
         }
     }
 }

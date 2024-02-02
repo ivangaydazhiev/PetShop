@@ -12,6 +12,6 @@ namespace PetShop.BL.Interfaces
 
         void Update (Pet pet);
 
-        void Delete (int id);
+        bool Delete (int id);
     }
 }

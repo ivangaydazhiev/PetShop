@@ -33,9 +33,16 @@ namespace PetShop.BL.Services
             _petRepository.Update(pet);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            _petRepository.Delete(id);
+            var pet = _petRepository.GetById(id);
+
+            if(pet != null)
+            {
+                _petRepository.Delete(id);
+                return true;
+            }
+            return false;
         }
 
         public List<Pet> GetAllPetsByAgeAndType(int minAge, string type)

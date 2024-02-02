@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetShop.BL.Interfaces;
 using PetShop.Models.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace PetShop.Controllers
 {
@@ -27,32 +28,40 @@ namespace PetShop.Controllers
 
         public ActionResult<Pet> GetById(int id)
         {
-            var  pet = _petService.GetById(id);
+            var pet = _petService.GetById(id);
 
             if(pet == null)
             {
-                return NotFound();
+                return NotFound("Pet not found!");
             }
             return pet;
         }
 
         [HttpPost("Add")]
 
-        public ActionResult<Pet> Add(Pet pet)
+        public ActionResult<Pet> Add([FromBody]Pet pet)
         {
             _petService.Add(pet);
-            return CreatedAtAction(nameof(GetById), new {id = pet.Id }, pet);
+            return CreatedAtAction(nameof(GetById), new {id = pet.Id}, pet);
         }
 
         [HttpPut("Update")]
 
-        public IActionResult Update(int id, Pet pet)
+        public IActionResult Update([FromBody]Pet pet)
         {
-            if(id != pet.Id)
+            if(pet == null || pet.Id <= 0)
             {
-                return BadRequest();
+                return BadRequest("Inavalid input. Please provide a valid pet object!");
             }
+
+            var existingPet = _petService.GetById(pet.Id);
+            if(existingPet == null)
+            {
+                return NotFound("Pet not found!");
+            }
+
             _petService.Update(pet);
+
             return NoContent();
         }
 
@@ -60,8 +69,16 @@ namespace PetShop.Controllers
         
         public IActionResult Delete(int id)
         {
-            _petService.Delete(id);
-            return NoContent();
+            var result = _petService.Delete(id);
+
+            if(result)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return NotFound("Pet not found!");
+            }
         }
     }
 }
