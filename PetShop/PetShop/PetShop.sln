@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShop.DL", "..\PetShop.DL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShop.BL", "..\PetShop.BL\PetShop.BL.csproj", "{1656DF83-3908-450B-B6ED-00219714BD68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.Tests", "..\PetShop.Tests\PetShop.Tests.csproj", "{3844AFF5-7A93-4A00-B981-7C27F075DD0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShop.Tests", "..\PetShop.Tests\PetShop.Tests.csproj", "{3844AFF5-7A93-4A00-B981-7C27F075DD0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
